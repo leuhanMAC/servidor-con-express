@@ -24,7 +24,7 @@ class Contenedor {
     async save(content){
         try {
             const data = await this.getAll();
-            content.id = (data[data.length - 1]?.id || 0) + 1;
+            content.id = (data[data.length - 1].id || 0) + 1;
             data.push(content);
             await fs.promises.writeFile(this.fileName, JSON.stringify(data, null, 2), 'utf8');
         } catch (error) {

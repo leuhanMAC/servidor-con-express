@@ -1,6 +1,6 @@
 {
   "name": "servidor-con-express",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Servidor con express, clase 6 coderhouse backend",
   "main": "server.js",
   "scripts": {

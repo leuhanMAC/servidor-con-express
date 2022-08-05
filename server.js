@@ -1,8 +1,9 @@
 const express = require('express');
-const Contenedor = require('./class');
+const fs = require('fs');
+const Contenedor = require('./contenedor');
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const contenedor = new Contenedor('productos.txt');
 
 
@@ -13,14 +14,20 @@ const server = app.listen(PORT, () => {
 //1)a)
 app.get('/productos', async (req, res) => {
     const products = await contenedor.getAll();
-    res.end(JSON.stringify(products));
+    res.json(products);
 });
 //1)b)
 app.get('/productoRandom', async (req, res) => {
     const products = await contenedor.getAll();
-    res.end(JSON.stringify(products[Math.floor(Math.random() * products.length)]));
+    res.json(products[Math.floor(Math.random() * products.length)]);
 });
 
-
+app.get('/', (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-type', 'text/html');
+    var html = fs.readFileSync('./index.html');
+    res.write(html);    
+    res.end();
+})
 
 
