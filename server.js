@@ -26,8 +26,6 @@ app.get('/', (req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-type', 'text/html');
     var html = fs.readFileSync('./index.html');
-    res.write(html);    
+    res.write(html);
     res.end();
-})
-
-
+});
